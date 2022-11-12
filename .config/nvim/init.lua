@@ -31,14 +31,15 @@ require "paq" {
   -- Rust
   "simrat39/rust-tools.nvim";
   -- Autocomplete
-  'hrsh7th/cmp-nvim-lsp';
-  'hrsh7th/cmp-buffer';
-  'hrsh7th/cmp-path';
-  'hrsh7th/cmp-cmdline';
-  'hrsh7th/nvim-cmp';
-  'glepnir/lspsaga.nvim';
+  "hrsh7th/cmp-nvim-lsp";
+  "hrsh7th/cmp-buffer";
+  "hrsh7th/cmp-path";
+  "hrsh7th/cmp-cmdline";
+  "hrsh7th/nvim-cmp";
+  "glepnir/lspsaga.nvim";
   -- Snippets
-  'hrsh7th/cmp-vsnip';
+  "hrsh7th/cmp-vsnip";
+  "hrsh7th/vim-vsnip";
   -- Commenting
   "numToStr/Comment.nvim";
   -- Debugging
@@ -59,24 +60,31 @@ require "paq" {
   "kyazdani42/nvim-web-devicons";
   "romgrk/barbar.nvim";
   -- Statusbar
-  'nvim-lualine/lualine.nvim';
+  "nvim-lualine/lualine.nvim";
   -- Reopen files
-  'ethanholz/nvim-lastplace';
+  "ethanholz/nvim-lastplace";
   -- Blankline
   "lukas-reineke/indent-blankline.nvim";
   -- Autopairs
-  'windwp/nvim-autopairs';
+  "windwp/nvim-autopairs";
   -- Cursorline
   "yamatsum/nvim-cursorline";
   -- Format
   "lukas-reineke/lsp-format.nvim";
+  -- Git
+  "lewis6991/gitsigns.nvim";
+  -- Surround
+  "kylechui/nvim-surround";
+
 }
 
 require('Comment').setup()
 -- require('leap').add_default_mappings()
 require('lualine').setup()
 require("nvim-autopairs").setup {}
+require('gitsigns').setup()
 require("lsp-format").setup {}
+require("nvim-surround").setup()
 require("lspconfig").gopls.setup { on_attach = require("lsp-format").on_attach }
 
 require("indent_blankline").setup {
@@ -308,8 +316,10 @@ require'nvim-treesitter.configs'.setup {
   -- Personal Keybindings
   vim.keymap.set("n", "<Leader>sv", ":source $MYVIMRC<CR>")
   vim.keymap.set('n', '<Leader>w', ':write<CR>')
+  vim.keymap.set('n', '<Leader>q', ':q<CR>')
   vim.keymap.set("n", "<Leader>pi", ":PaqInstall<CR>")
   vim.keymap.set("n", "<Leader>pc", ":PaqClean<CR>")
   vim.keymap.set("n", "<Leader>F", ":Telescope file_browser hidden=true<CR>")
   vim.keymap.set("n", "<Leader>t", ":Telescope<CR>")
+  vim.keymap.set("n", "<Leader>en", ":e ~/.config/nvim/init.lua<CR>")
 
