@@ -3,6 +3,7 @@ vim.opt.autoindent = true
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.wo.signcolumn = "yes"
+vim.wo.scrolloff = 7
 
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
@@ -319,7 +320,9 @@ require'nvim-treesitter.configs'.setup {
   vim.keymap.set('n', '<Leader>q', ':q<CR>')
   vim.keymap.set("n", "<Leader>pi", ":PaqInstall<CR>")
   vim.keymap.set("n", "<Leader>pc", ":PaqClean<CR>")
+  vim.keymap.set("n", "<Leader>ps", ":PaqSync<CR>")
   vim.keymap.set("n", "<Leader>F", ":Telescope file_browser hidden=true<CR>")
   vim.keymap.set("n", "<Leader>t", ":Telescope<CR>")
+  vim.keymap.set("n", "<Leader>D", ":Telescope diagnostics<CR>")
   vim.keymap.set("n", "<Leader>en", ":e ~/.config/nvim/init.lua<CR>")
 
