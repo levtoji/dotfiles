@@ -1,0 +1,14 @@
+theme = "doom_acario_dark"
+
+[editor]
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+
+[editor.file-picker]
+ignore = false
+
+[keys.normal]
+space = { W = ":w"}
