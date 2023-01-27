@@ -3,6 +3,9 @@ theme = "doom_acario_dark"
 [editor]
 bufferline = "always"
 
+[editor.lsp]
+auto-signature-help = false
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -12,3 +15,4 @@ ignore = false
 
 [keys.normal]
 space = { W = ":w"}
+c = { c = ["extend_to_line_bounds", "trim_selections", "change_selection"] }
