@@ -15,4 +15,4 @@ ignore = false
 
 [keys.normal]
 space = { W = ":w"}
-c = { c = ["extend_to_line_bounds", "trim_selections", "change_selection"] }
+D = ["extend_to_line_bounds", "trim_selections", "change_selection"]
