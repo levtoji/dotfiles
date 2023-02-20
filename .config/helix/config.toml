@@ -1,4 +1,4 @@
-theme = "doom_acario_dark"
+theme = "papercolor-dark"
 
 [editor]
 bufferline = "always"
