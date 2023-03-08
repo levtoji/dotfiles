@@ -1,10 +1,10 @@
-theme = "papercolor-dark"
+theme = "solarized_dark"
 
 [editor]
 bufferline = "always"
 
 [editor.lsp]
-auto-signature-help = false
+# auto-signature-help = false
 
 [editor.cursor-shape]
 insert = "bar"
