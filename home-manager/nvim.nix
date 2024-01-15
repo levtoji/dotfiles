@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-let nixvim = import (builtins.fetchGit { url = "https://github.com/nix-community/nixvim"; });
+{pkgs, ...}: let
+  nixvim = import (builtins.fetchGit {url = "https://github.com/nix-community/nixvim";});
 in {
-
-  imports = [ nixvim.homeManagerModules.nixvim ];
+  imports = [nixvim.homeManagerModules.nixvim];
 
   programs.nixvim = {
     enable = true;
@@ -28,7 +27,7 @@ in {
       nvim-cmp = {
         enable = true;
         autoEnableSources = true;
-        sources = [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
+        sources = [{name = "nvim_lsp";} {name = "path";} {name = "buffer";}];
       };
       lsp-format.enable = true;
       lspsaga.enable = true;
@@ -36,9 +35,9 @@ in {
       neorg = {
         enable = true;
         modules = {
-          "core.defaults" = { __empty = null; };
-          "core.concealer" = { };
-          "core.integrations.treesitter" = { };
+          "core.defaults" = {__empty = null;};
+          "core.concealer" = {};
+          "core.integrations.treesitter" = {};
         };
       };
       telescope.enable = true;
@@ -50,19 +49,19 @@ in {
       mini = {
         enable = true;
         modules = {
-          basics = { };
+          basics = {};
           ai = {
             n_lines = 50;
             search_method = "cover_or_next";
           };
-          comment = { };
-          surround = { };
-          clue = { };
-          jump = { };
-          move = { };
-          files = { };
-          pairs = { };
-          indentscope = { };
+          comment = {};
+          surround = {};
+          clue = {};
+          jump = {};
+          move = {};
+          files = {};
+          pairs = {};
+          indentscope = {};
         };
       };
     };

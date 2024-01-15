@@ -1,5 +1,5 @@
-{ pkgs, ... }:
-let editor = "hx";
+{pkgs, ...}: let
+  editor = "hx";
 in {
   # You can import other home-manager modules here
   imports = [
@@ -56,7 +56,6 @@ in {
     };
 
     packages = with pkgs; [
-
       appimage-run
       ardour
       audacity
@@ -104,8 +103,7 @@ in {
       zoom-us
       wl-clipboard
 
-      (pkgs.discord-canary.override { withVencord = true; })
-
+      (pkgs.discord-canary.override {withVencord = true;})
     ];
 
     file = {
@@ -197,12 +195,11 @@ in {
 
         config.color_scheme = "lovelace"
         config.font_size = 13.0
-        config.hide_tab_bar_if_only_one_tab = true 
+        config.hide_tab_bar_if_only_one_tab = true
         config.warn_about_missing_glyphs = false
 
         return config
       '';
-
     };
   };
 
