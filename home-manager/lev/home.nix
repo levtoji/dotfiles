@@ -10,6 +10,7 @@ in {
 
     # You can also split up your configuration and import pieces of it here:
     ./nvim.nix
+    ./emacs.nix
   ];
 
   nixpkgs = {
@@ -83,7 +84,7 @@ in {
       libsForQt5.kcalc
       libsForQt5.kdenlive
       mediainfo
-      megasync
+      # megasync
       nixd
       nil
       nixfmt
