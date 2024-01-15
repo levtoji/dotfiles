@@ -1,5 +1,7 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   editor = "hx";
+  config-path = "~/dotfiles";
 in {
   # You can import other home-manager modules here
   imports = [
@@ -7,7 +9,7 @@ in {
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
+    ./nvim.nix
   ];
 
   nixpkgs = {
@@ -48,10 +50,10 @@ in {
       zl = "zellij";
       zlf = "zellij --layout ~/.config/zellij/layouts/first.kdl";
       htop = "btm -b";
-      hms = "home-manager switch";
-      home = "${editor} ~/.config/home-manager/home.nix";
-      nix-conf = "sudoedit /etc/nixos/configuration.nix";
-      nix-bs = "sudo nixos-rebuild --upgrade switch";
+      home = "${editor} ${config-path}/home-manager/$(whoami)/home.nix";
+      hms = "home-manager switch --flake ${config-path}/#$(whoami)";
+      nix-conf = "${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
+      nix-bs = "sudo nixos-rebuild switch --flake ${config-path}#$(hostname)";
       memory = "${editor} ~/Notes/";
     };
 
@@ -103,7 +105,7 @@ in {
       zoom-us
       wl-clipboard
 
-      (pkgs.discord-canary.override {withVencord = true;})
+      (pkgs.discord-canary.override { withVencord = true; })
     ];
 
     file = {
@@ -139,6 +141,9 @@ in {
         space = { W = ":w"}
         D = ["ensure_selections_forward", "extend_to_line_end"]
         esc = ["collapse_selection", "keep_primary_selection"]
+
+        C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+        C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
       '';
 
       ".config/helix/languages.toml".text = ''
