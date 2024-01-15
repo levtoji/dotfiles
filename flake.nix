@@ -26,7 +26,8 @@
       # pass to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      machine-pc = "nixos-pc";
+      nixos-pc = "nixos-pc";
+      nixos-nb = "nixos-nb";
       default-user = "lev";
     in {
       # Your custom packages
@@ -48,9 +49,13 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        ${machine-pc} = nixpkgs.lib.nixosSystem {
+        ${nixos-pc} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixos/${machine-pc}/configuration.nix ];
+          modules = [ ./nixos/${nixos-pc}/configuration.nix ];
+        };
+        ${nixos-nb} = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/${nixos-nb}/configuration.nix ];
         };
       };
 
