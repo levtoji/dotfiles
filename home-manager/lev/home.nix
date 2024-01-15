@@ -129,6 +129,7 @@ in {
 
         [editor]
         bufferline = "always"
+        cursorline = true
 
         [editor.soft-wrap]
         enable = true
