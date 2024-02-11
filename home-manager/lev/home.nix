@@ -2,6 +2,7 @@
 let
   editor = "hx";
   config-path = "~/dotfiles";
+  font-size = "14.0";
 in {
   # You can import other home-manager modules here
   imports = [
@@ -10,7 +11,6 @@ in {
 
     # You can also split up your configuration and import pieces of it here:
     ./nvim.nix
-    ./emacs.nix
   ];
 
   nixpkgs = {
@@ -43,7 +43,7 @@ in {
     sessionVariables = {
       EDITOR = editor;
       BROWSER = "brave";
-      TERMINAL = "wezterm";
+      TERMINAL = "kitty";
     };
 
     shellAliases = {
@@ -59,6 +59,7 @@ in {
     };
 
     packages = with pkgs; [
+
       appimage-run
       ardour
       audacity
@@ -68,33 +69,38 @@ in {
       bottom
       brave
       broot
+      csharp-ls
       deno
+      (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
       du-dust
       eza
       f3d
       fd
       freecad
       gimp
-      godot_4
       gitui
+      godot_4
       helix
+      localsend
+      jabref
+      jetbrains-toolbox
       just
       kitty
       libreoffice-fresh
       libsForQt5.kcalc
       libsForQt5.kdenlive
+      libsForQt5.kmag
       mediainfo
-      # megasync
-      nixd
+      mono
       nil
+      nixd
       nixfmt
-      ouch
       # oterm
+      ouch
       ripgrep
       rustup
       signal-desktop
       spotify
-      steam
       tealdeer
       telegram-desktop
       thunderbird
@@ -102,9 +108,10 @@ in {
       vlc
       vscode
       wezterm
+      wl-clipboard
+      yazi
       zellij
       zoom-us
-      wl-clipboard
 
       (pkgs.discord-canary.override { withVencord = true; })
     ];
@@ -125,7 +132,7 @@ in {
       ".config/zellij/config.kdl".source = ./zellij/config.kdl;
 
       ".config/helix/config.toml".text = ''
-        theme = "doom_acario_dark"
+        theme = "cyan_light"
 
         [editor]
         bufferline = "always"
@@ -185,7 +192,7 @@ in {
       '';
 
       ".config/kitty/kitty.conf".text = ''
-        font_size 13.0
+        font_size ${font-size}
         font_family JetBrains Mono
         include theme.conf
       '';
@@ -201,7 +208,7 @@ in {
         end
 
         config.color_scheme = "lovelace"
-        config.font_size = 13.0
+        config.font_size = ${font-size}
         config.hide_tab_bar_if_only_one_tab = true
         config.warn_about_missing_glyphs = false
 
@@ -221,12 +228,6 @@ in {
       userName = "Lev Perschin";
       userEmail = "lev@perschin.net";
     };
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
   };
 
   # Nicely reload system units when changing configs

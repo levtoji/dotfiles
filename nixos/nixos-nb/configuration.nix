@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [ ../common/common.nix ./hardware-configuration.nix ];

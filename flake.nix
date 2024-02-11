@@ -14,11 +14,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    helix-master = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hardware.url = "github:nixos/nixos-hardware";
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, helix-master, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [ "x86_64-linux" ];

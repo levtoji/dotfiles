@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ config, ... }: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -31,6 +31,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.production;
     powerManagement.enable = false;
   };
+
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "23.05";
 }

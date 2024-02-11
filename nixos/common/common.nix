@@ -8,6 +8,8 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
+      inputs.helix-master.overlays.default
+
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -54,8 +56,6 @@
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 
-  virtualisation.docker.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -76,9 +76,9 @@
 
   services.xserver = {
     enable = true;
-    layout = "eu";
-    xkbVariant = "";
-    xkbOptions = "";
+    xkb.layout = "eu";
+    xkb.variant = "";
+    xkb.options = "";
 
     displayManager.sddm = {
       enable = true;
@@ -151,8 +151,12 @@
     ifuse
   ];
 
+  # Disable firewall
   networking.firewall.enable = false;
 
+  # --- Extra services
+  # Docker
+  virtualisation.docker.enable = true;
   # iOS Thethering
   services.usbmuxd.enable = true;
   # Local LLM
@@ -161,6 +165,11 @@
   services.logind.extraConfig = "RuntimeDirectorySize=4G";
   # SSD trim
   services.fstrim.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
 
   services.openssh = {
     enable = true;
