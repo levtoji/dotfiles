@@ -57,6 +57,7 @@ in {
       nix-conf = "${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
       nix-bs = "sudo nixos-rebuild switch --flake ${config-path}#$(hostname)";
       memory = "${editor} ~/Notes/";
+      zx = "yazi";
     };
 
     packages = with pkgs; [
