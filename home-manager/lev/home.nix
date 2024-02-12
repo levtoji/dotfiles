@@ -3,6 +3,7 @@ let
   editor = "hx";
   config-path = "~/dotfiles";
   font-size = "14.0";
+  theme-light = false;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -132,7 +133,7 @@ in {
       ".config/zellij/config.kdl".source = ./zellij/config.kdl;
 
       ".config/helix/config.toml".text = ''
-        theme = "cyan_light"
+        theme = "${if theme-light then "cyan_light" else "dark_plus"}"
 
         [editor]
         bufferline = "always"
@@ -197,7 +198,8 @@ in {
         include theme.conf
       '';
 
-      ".config/kitty/theme.conf".source = ./kitty/theme.conf;
+      ".config/kitty/theme.conf".source =
+        if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
 
       ".wezterm.lua".text = ''
         local wezterm = require 'wezterm'
