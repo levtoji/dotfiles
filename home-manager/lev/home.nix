@@ -82,6 +82,7 @@ in {
       gimp
       gitui
       godot_4
+      gitoxide
       helix
       localsend
       jabref
