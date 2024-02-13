@@ -11,6 +11,9 @@
     driSupport32Bit = true;
   };
 
+  # For better wayland support
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   powerManagement.enable = true;
 
   system.stateVersion = "23.05";

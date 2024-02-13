@@ -89,9 +89,6 @@
     desktopManager.plasma5.enable = true;
   };
 
-  # For better wayland support
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   console.useXkbConfig = true;
 
   # --- Printing & Scanning
