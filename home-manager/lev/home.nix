@@ -3,7 +3,7 @@ let
   editor = "hx";
   config-path = "~/dotfiles";
   font-size = "14.0";
-  theme-light = false;
+  theme-light = true;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -84,6 +84,7 @@ in {
       godot_4
       gitoxide
       helix
+      husky
       localsend
       jabref
       jetbrains-toolbox
@@ -98,7 +99,8 @@ in {
       nil
       nixd
       nixfmt
-      # oterm
+      nodePackages.prettier
+      oterm
       ouch
       ripgrep
       rustup
@@ -116,6 +118,7 @@ in {
       yazi
       zellij
       zoom-us
+      zoxide
 
       (pkgs.discord-canary.override { withVencord = true; })
     ];
@@ -212,7 +215,9 @@ in {
           config = wezterm.config_builder()
         end
 
-        config.color_scheme = "lovelace"
+        config.color_scheme = "${
+          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
+        }"
         config.font_size = ${font-size}
         config.hide_tab_bar_if_only_one_tab = true
         config.warn_about_missing_glyphs = false
