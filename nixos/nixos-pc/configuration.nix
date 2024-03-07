@@ -17,7 +17,7 @@
   ];
 
   networking.hostName = "nixos-pc";
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.opengl = {
     enable = true;
@@ -25,14 +25,8 @@
     driSupport32Bit = true;
   };
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    powerManagement.enable = false;
-  };
-
   programs.nix-ld.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "23.05";
 }

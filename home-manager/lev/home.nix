@@ -3,7 +3,7 @@ let
   editor = "hx";
   config-path = "~/dotfiles";
   font-size = "14.0";
-  theme-light = true;
+  theme-light = false;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -72,6 +72,7 @@ in {
       brave
       broot
       csharp-ls
+      csharpier
       deno
       (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
       du-dust
@@ -83,17 +84,17 @@ in {
       gitui
       godot_4
       gitoxide
+      gitkraken
       helix
-      husky
       localsend
       jabref
       jetbrains-toolbox
       just
       kitty
       libreoffice-fresh
-      libsForQt5.kcalc
-      libsForQt5.kdenlive
-      libsForQt5.kmag
+      kdePackages.kcalc
+      kdePackages.kdenlive
+      kdePackages.kmag
       mediainfo
       mono
       nil
@@ -106,6 +107,7 @@ in {
       rustup
       signal-desktop
       spotify
+      steam
       tealdeer
       telegram-desktop
       thunderbird

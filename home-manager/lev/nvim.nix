@@ -23,11 +23,7 @@
         };
       };
       ollama.enable = true;
-      nvim-cmp = {
-        enable = true;
-        autoEnableSources = true;
-        sources = [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
-      };
+      cmp.enable = true;
       lsp-format.enable = true;
       lspsaga.enable = true;
       neogit.enable = true;

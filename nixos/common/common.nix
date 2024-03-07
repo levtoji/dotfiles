@@ -86,7 +86,7 @@
       wayland.enable = true;
     };
 
-    desktopManager.plasma5.enable = true;
+    desktopManager.plasma6.enable = true;
   };
 
   console.useXkbConfig = true;
@@ -157,7 +157,10 @@
   # iOS Thethering
   services.usbmuxd.enable = true;
   # Local LLM
-  services.ollama.enable = true;
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
   # Bigger runtime directory space because of build errors
   services.logind.extraConfig = "RuntimeDirectorySize=4G";
   # SSD trim
