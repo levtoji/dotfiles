@@ -112,6 +112,7 @@ in {
       telegram-desktop
       thunderbird
       tokei
+      slack
       vlc
       vscode
       wezterm
