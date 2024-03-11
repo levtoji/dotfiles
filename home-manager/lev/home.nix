@@ -44,7 +44,7 @@ in {
     sessionVariables = {
       EDITOR = editor;
       BROWSER = "brave";
-      TERMINAL = "kitty";
+      TERMINAL = "wezterm";
     };
 
     shellAliases = {
@@ -67,37 +67,34 @@ in {
       audacity
       bandwhich
       bat
+      biome
       blender
       bottom
       brave
       broot
-      csharp-ls
       csharpier
       deno
-      (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
       du-dust
       eza
       f3d
       fd
       freecad
       gimp
+      gitkraken
+      gitoxide
       gitui
       godot_4
-      gitoxide
-      gitkraken
       helix
-      localsend
       jabref
       jetbrains-toolbox
       just
-      kitty
-      libreoffice-fresh
       kdePackages.kcalc
       kdePackages.kdenlive
       kdePackages.kmag
+      libreoffice-fresh
+      localsend
       mediainfo
       mono
-      nil
       nixd
       nixfmt
       nodePackages.prettier
@@ -106,13 +103,15 @@ in {
       ripgrep
       rustup
       signal-desktop
+      slack
       spotify
       steam
       tealdeer
       telegram-desktop
       thunderbird
       tokei
-      slack
+      nodePackages.typescript
+      nodePackages.typescript-language-server
       vlc
       vscode
       wezterm
@@ -122,6 +121,7 @@ in {
       zoom-us
       zoxide
 
+      (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
       (pkgs.discord-canary.override { withVencord = true; })
     ];
 
@@ -165,39 +165,42 @@ in {
       '';
 
       ".config/helix/languages.toml".text = ''
+        [language-server]
+        biome = { command = "biome", args = ["lsp-proxy"] }
+
         [[language]]
         name = "javascript"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "js" ] }
-        auto-format = true
-
-        [[language]]
-        name = "json"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "json" ] }
-
-        [[language]]
-        name = "markdown"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+        language-servers = [ "biome" ]
         auto-format = true
 
         [[language]]
         name = "typescript"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "ts" ] }
-        auto-format = true
-
-        [[language]]
-        name = "jsx"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "jsx" ] }
+        language-servers = [ "biome" ]
         auto-format = true
 
         [[language]]
         name = "tsx"
-        formatter = { command = 'deno', args = ["fmt", "-", "--ext", "tsx" ] }
         auto-format = true
+        language-servers = [ "biome" ]
 
         [[language]]
-        name = "nix"
-        formatter = { command = 'nixfmt', args = ["-w", "100"] }
+        name = "jsx"
         auto-format = true
+        language-servers = [ "biome" ]
+
+        [[language]]
+        name = "json"
+        language-servers = [ "biome" ]        
+
+        # [[language]]
+        # name = "markdown"
+        # formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+        # auto-format = true
+
+        # [[language]]
+        # name = "nix"
+        # formatter = { command = 'nixfmt', args = ["-w", "100"] }
+        # auto-format = true
       '';
 
       ".config/kitty/kitty.conf".text = ''
