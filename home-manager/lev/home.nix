@@ -56,7 +56,7 @@ in {
       hms = "home-manager switch --flake ${config-path}/#$(whoami)";
       nix-conf = "${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
       nix-bs = "sudo nixos-rebuild switch --flake ${config-path}#$(hostname)";
-      memory = "${editor} ~/Notes/";
+      memory = "${editor} ~/Notes/$(date +%Y%m%d)";
       zx = "yazi";
     };
 
@@ -95,7 +95,7 @@ in {
       localsend
       mediainfo
       mono
-      nixd
+      # nixd
       nixfmt
       nodePackages.prettier
       oterm
@@ -209,8 +209,10 @@ in {
         include theme.conf
       '';
 
-      ".config/kitty/theme.conf".source =
-        if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
+      ".config/kitty/theme.conf".source = if theme-light then
+        ./kitty/theme-light.conf
+      else
+        ./kitty/theme-dark.conf;
 
       ".wezterm.lua".text = ''
         local wezterm = require 'wezterm'
@@ -221,7 +223,10 @@ in {
         end
 
         config.color_scheme = "${
-          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
+          if theme-light then
+            "Vs Code Light+ (Gogh)"
+          else
+            "Vs Code Dark+ (Gogh)"
         }"
         config.font_size = ${font-size}
         config.hide_tab_bar_if_only_one_tab = true
@@ -237,12 +242,12 @@ in {
     direnv.enable = true;
     starship.enable = true;
     bash.enable = true;
-    git = {
-      enable = true;
-      lfs.enable = true;
-      userName = "Lev Perschin";
-      userEmail = "lev@perschin.net";
-    };
+    # git = {
+    #   enable = true;
+    #   lfs.enable = true;
+    #   userName = "Lev Perschin";
+    #   userEmail = "lev@perschin.net";
+    # };
   };
 
   # Nicely reload system units when changing configs

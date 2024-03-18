@@ -85,9 +85,9 @@
       autoNumlock = true;
       wayland.enable = true;
     };
-
-    desktopManager.plasma6.enable = true;
   };
+
+  services.desktopManager.plasma6.enable = true;
 
   console.useXkbConfig = true;
 
@@ -111,7 +111,8 @@
   };
 
   # Patched font for icons in terminal
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
+  fonts.packages = with pkgs;
+    [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   # --- System sound
   sound.enable = true;
@@ -159,7 +160,7 @@
   # Local LLM
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    # acceleration = "cuda";
   };
   # Bigger runtime directory space because of build errors
   services.logind.extraConfig = "RuntimeDirectorySize=4G";
@@ -171,7 +172,12 @@
     xdgOpenUsePortal = true;
   };
 
-  programs.ssh.startAgent = true;
+  programs = {
+    ssh.startAgent = true;
+    git.config = {
+      url = { "git@github.com:" = { insteadOf = [ "https://github.com/" ]; }; };
+    };
+  };
 
   services.openssh = {
     enable = true;
