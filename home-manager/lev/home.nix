@@ -62,6 +62,7 @@ in {
 
     packages = with pkgs; [
 
+      atuin
       appimage-run
       ardour
       audacity
@@ -91,11 +92,12 @@ in {
       kdePackages.kcalc
       kdePackages.kdenlive
       kdePackages.kmag
+      kdePackages.neochat
       libreoffice-fresh
       localsend
       mediainfo
       mono
-      nixd
+      # nixd
       nixfmt
       nodePackages.prettier
       oterm
