@@ -79,12 +79,12 @@
     xkb.layout = "eu";
     xkb.variant = "";
     xkb.options = "";
+  };
 
-    displayManager.sddm = {
-      enable = true;
-      autoNumlock = true;
-      wayland.enable = true;
-    };
+  services.displayManager.sddm = {
+    enable = true;
+    autoNumlock = true;
+    wayland.enable = true;
   };
 
   services.desktopManager.plasma6.enable = true;
@@ -111,8 +111,7 @@
   };
 
   # Patched font for icons in terminal
-  fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   # --- System sound
   sound.enable = true;
@@ -158,9 +157,7 @@
   # iOS Thethering
   services.usbmuxd.enable = true;
   # Local LLM
-  services.ollama = {
-    enable = true;
-  };
+  services.ollama = { enable = true; };
   # Bigger runtime directory space because of build errors
   services.logind.extraConfig = "RuntimeDirectorySize=4G";
   # SSD trim
@@ -173,9 +170,7 @@
 
   programs = {
     ssh.startAgent = true;
-    git.config = {
-      url = { "git@github.com:" = { insteadOf = [ "https://github.com/" ]; }; };
-    };
+    git.config = { url = { "git@github.com:" = { insteadOf = [ "https://github.com/" ]; }; }; };
   };
 
   services.openssh = {

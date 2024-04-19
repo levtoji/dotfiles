@@ -85,7 +85,6 @@ in {
       gitoxide
       gitui
       godot_4
-      helix
       jabref
       jetbrains-toolbox
       just
@@ -98,9 +97,9 @@ in {
       mediainfo
       mono
       # nixd
-      nixfmt
+      nixfmt-classic
+      # oterm
       nodePackages.prettier
-      oterm
       ouch
       ripgrep
       rustup
@@ -111,6 +110,8 @@ in {
       tealdeer
       telegram-desktop
       thunderbird
+      python3
+      ruff
       tokei
       nodePackages.typescript
       nodePackages.typescript-language-server
@@ -166,44 +167,44 @@ in {
         C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
       '';
 
-      ".config/helix/languages.toml".text = ''
-        [language-server]
-        biome = { command = "biome", args = ["lsp-proxy"] }
+      # ".config/helix/languages.toml".text = ''
+      #   [language-server]
+      #   biome = { command = "biome", args = ["lsp-proxy"] }
 
-        [[language]]
-        name = "javascript"
-        language-servers = [ "biome" ]
-        auto-format = true
+      #   [[language]]
+      #   name = "javascript"
+      #   language-servers = [ "biome" ]
+      #   auto-format = true
 
-        [[language]]
-        name = "typescript"
-        language-servers = [ "biome" ]
-        auto-format = true
+      #   [[language]]
+      #   name = "typescript"
+      #   language-servers = [ "biome" ]
+      #   auto-format = true
 
-        [[language]]
-        name = "tsx"
-        auto-format = true
-        language-servers = [ "biome" ]
+      #   [[language]]
+      #   name = "tsx"
+      #   auto-format = true
+      #   language-servers = [ "biome" ]
 
-        [[language]]
-        name = "jsx"
-        auto-format = true
-        language-servers = [ "biome" ]
+      #   [[language]]
+      #   name = "jsx"
+      #   auto-format = true
+      #   language-servers = [ "biome" ]
 
-        [[language]]
-        name = "json"
-        language-servers = [ "biome" ]        
+      #   [[language]]
+      #   name = "json"
+      #   language-servers = [ "biome" ]        
 
-        # [[language]]
-        # name = "markdown"
-        # formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
-        # auto-format = true
+      #   # [[language]]
+      #   # name = "markdown"
+      #   # formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+      #   # auto-format = true
 
-        # [[language]]
-        # name = "nix"
-        # formatter = { command = 'nixfmt', args = ["-w", "100"] }
-        # auto-format = true
-      '';
+      #   # [[language]]
+      #   # name = "nix"
+      #   # formatter = { command = 'nixfmt', args = ["-w", "100"] }
+      #   # auto-format = true
+      # '';
 
       ".config/kitty/kitty.conf".text = ''
         font_size ${font-size}
@@ -211,10 +212,8 @@ in {
         include theme.conf
       '';
 
-      ".config/kitty/theme.conf".source = if theme-light then
-        ./kitty/theme-light.conf
-      else
-        ./kitty/theme-dark.conf;
+      ".config/kitty/theme.conf".source =
+        if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
 
       ".wezterm.lua".text = ''
         local wezterm = require 'wezterm'
@@ -225,10 +224,7 @@ in {
         end
 
         config.color_scheme = "${
-          if theme-light then
-            "Vs Code Light+ (Gogh)"
-          else
-            "Vs Code Dark+ (Gogh)"
+          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
         }"
         config.font_size = ${font-size}
         config.hide_tab_bar_if_only_one_tab = true
