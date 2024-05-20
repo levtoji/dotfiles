@@ -62,7 +62,6 @@ in {
 
     packages = with pkgs; [
 
-      atuin
       appimage-run
       ardour
       audacity
@@ -81,12 +80,11 @@ in {
       fd
       freecad
       gimp
-      gitkraken
       gitoxide
       gitui
       godot_4
       jabref
-      jetbrains-toolbox
+      # jetbrains-toolbox
       just
       kdePackages.kcalc
       kdePackages.kdenlive
