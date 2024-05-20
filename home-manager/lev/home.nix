@@ -62,6 +62,8 @@ in {
 
     packages = with pkgs; [
 
+      fwupd
+      aha
       atuin
       appimage-run
       ardour
