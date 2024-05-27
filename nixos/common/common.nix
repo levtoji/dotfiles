@@ -111,7 +111,12 @@
   };
 
   # Patched font for icons in terminal
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+  ];
 
   # --- System sound
   sound.enable = true;
@@ -172,6 +177,8 @@
     ssh.startAgent = true;
     git.config = { url = { "git@github.com:" = { insteadOf = [ "https://github.com/" ]; }; }; };
   };
+
+  programs.kdeconnect.enable = true;
 
   services.openssh = {
     enable = true;
