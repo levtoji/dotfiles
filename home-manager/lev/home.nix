@@ -238,6 +238,11 @@ in {
     direnv.enable = true;
     starship.enable = true;
     bash.enable = true;
+    emacs = {
+      enable = true;
+      package = pkgs.emacs;
+    };
+
     # git = {
     #   enable = true;
     #   lfs.enable = true;
