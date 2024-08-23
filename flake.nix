@@ -9,21 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     helix-master = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim.url = "github:nix-community/nixvim";
     # hardware.url = "github:nixos/nixos-hardware";
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, helix-master, ... }@inputs:
+  outputs = { self, nix-ld, nixpkgs, home-manager, helix-master, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [ "x86_64-linux" ];
@@ -56,11 +57,11 @@
       nixosConfigurations = {
         ${nixos-pc} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixos/${nixos-pc}/configuration.nix ];
+          modules = [ ./nixos/${nixos-pc}/configuration.nix nix-ld.nixosModules.nix-ld ];
         };
         ${nixos-nb} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixos/${nixos-nb}/configuration.nix ];
+          modules = [ ./nixos/${nixos-nb}/configuration.nix nix-ld.nixosModules.nix-ld ];
         };
       };
 

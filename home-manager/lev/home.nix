@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   editor = "hx";
   config-path = "~/dotfiles";
@@ -8,7 +8,7 @@ in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
+    inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
     ./nvim.nix
@@ -62,6 +62,7 @@ in {
 
     packages = with pkgs; [
 
+      amdgpu_top
       appimage-run
       ardour
       audacity
@@ -73,33 +74,40 @@ in {
       brave
       broot
       csharpier
+      clang-tools
       deno
       du-dust
       eza
       f3d
       fd
       freecad
+      gh-dash
       gimp
       gitoxide
       gitui
       godot_4
       jabref
-      # jetbrains-toolbox
       just
       kdePackages.kcalc
       kdePackages.kdenlive
       kdePackages.kmag
-      kdePackages.neochat
+      # kdePackages.neochat
       libreoffice-fresh
       localsend
       mediainfo
       mono
-      # nixd
+      mpv
+      nixd
       nixfmt-classic
-      # oterm
       nodePackages.prettier
+      nodePackages.typescript
+      nodePackages.typescript-language-server
+      # oterm
       ouch
       ripgrep
+      ruff
+      ruff-lsp
+      pyright
       rustup
       signal-desktop
       slack
@@ -108,11 +116,9 @@ in {
       tealdeer
       telegram-desktop
       thunderbird
-      python3
-      ruff
+      taplo
       tokei
-      nodePackages.typescript
-      nodePackages.typescript-language-server
+      uv
       vlc
       vscode
       wezterm
@@ -213,23 +219,23 @@ in {
       ".config/kitty/theme.conf".source =
         if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
 
-      ".wezterm.lua".text = ''
-        local wezterm = require 'wezterm'
-        local config = {}
+      # ".wezterm.lua".text = ''
+      #   local wezterm = require 'wezterm'
+      #   local config = {}
 
-        if wezterm.config_builder then
-          config = wezterm.config_builder()
-        end
+      #   if wezterm.config_builder then
+      #     config = wezterm.config_builder()
+      #   end
 
-        config.color_scheme = "${
-          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
-        }"
-        config.font_size = ${font-size}
-        config.hide_tab_bar_if_only_one_tab = true
-        config.warn_about_missing_glyphs = false
+      #   config.color_scheme = "${
+      #     if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
+      #   }"
+      #   config.font_size = ${font-size}
+      #   config.hide_tab_bar_if_only_one_tab = true
+      #   config.warn_about_missing_glyphs = false
 
-        return config
-      '';
+      #   return config
+      # '';
     };
   };
 

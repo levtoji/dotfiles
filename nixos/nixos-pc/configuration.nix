@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -17,15 +17,18 @@
   ];
 
   networking.hostName = "nixos-pc";
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+      mesa.drivers
+      libvdpau-va-gl
+    ];
   };
 
-  programs.nix-ld.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "23.05";

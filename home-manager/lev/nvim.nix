@@ -1,14 +1,17 @@
-{ pkgs, inputs, ... }: {
+{ inputs, ... }: {
 
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
   programs.nixvim = {
     enable = true;
     globals.mapleader = " ";
-    colorschemes.ayu.enable = true;
+    colorschemes.oxocarbon.enable = true;
 
     plugins = {
-      lightline.enable = true;
+      lightline = {
+	enable = true;
+	colorscheme = "powerline";
+      };
       lsp = {
         enable = true;
         servers = {
@@ -18,65 +21,63 @@
             installCargo = true;
             installRustc = true;
           };
-          # nixd.enable = true;
+          nixd.enable = true;
           omnisharp.enable = true;
         };
       };
+      harpoon.enable = true;
       ollama.enable = true;
       cmp.enable = true;
       lsp-format.enable = true;
       lspsaga.enable = true;
       neogit.enable = true;
-      neorg = {
-        enable = true;
-        modules = {
-          "core.defaults" = { __empty = null; };
-          "core.concealer" = { };
-          "core.integrations.treesitter" = { };
-        };
-      };
+      gitsigns.enable = true;
+      octo.enable = true;
+
+      nvim-autopairs.enable = true;
+
+      neotest.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
-      barbar.enable = true;
       luasnip.enable = true;
-      noice.enable = true;
       which-key.enable = true;
-      mini = {
-        enable = true;
-        modules = {
-          basics = { };
-          ai = {
-            n_lines = 50;
-            search_method = "cover_or_next";
-          };
-          comment = { };
-          surround = { };
-          clue = { };
-          jump = { };
-          move = { };
-          files = { };
-          pairs = { };
-          indentscope = { };
-        };
-      };
+	     mini = {
+	       enable = false;
+	       modules = {
+	         basics = { };
+	         ai = {
+	           n_lines = 50;
+	           search_method = "cover_or_next";
+	         };
+	         comment = { };
+	         surround = { };
+	         clue = { };
+	         jump = { };
+	         move = { };
+	  files = { };
+	         pairs = { };
+	         indentscope = { };
+	       };
+	     };
     };
     opts = {
       number = true;
-      relativenumber = true;
       shiftwidth = 2;
+      scroll = 8;
+      scrolloff = 10;
     };
     extraConfigLua = "";
     keymaps = [
-      {
-        mode = "n";
-        key = "gn";
-        action = "<cmd>BufferNext<CR>";
-      }
-      {
-        mode = "n";
-        key = "gN";
-        action = "<cmd>BufferPrevious<CR>";
-      }
+      # {
+      #   mode = "n";
+      #   key = "gn";
+      #   action = "<cmd>BufferNext<CR>";
+      # }
+      # {
+      #   mode = "n";
+      #   key = "gN";
+      #   action = "<cmd>BufferPrevious<CR>";
+      # }
       {
         mode = "n";
         key = "gd";
@@ -134,7 +135,7 @@
       }
       {
         mode = "i";
-        key = "<cr>z";
+        key = "<leader>z";
         action = "<cmd>Telescope outline<CR>";
       }
     ];

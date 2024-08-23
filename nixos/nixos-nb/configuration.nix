@@ -5,10 +5,9 @@
 
   networking.hostName = "nixos-nb";
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # For better wayland support
