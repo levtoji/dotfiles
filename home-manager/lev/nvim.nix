@@ -9,8 +9,8 @@
 
     plugins = {
       lightline = {
-	enable = true;
-	colorscheme = "powerline";
+        enable = true;
+        settings.colorscheme = "powerline";
       };
       lsp = {
         enable = true;
@@ -41,24 +41,24 @@
       treesitter.enable = true;
       luasnip.enable = true;
       which-key.enable = true;
-	     mini = {
-	       enable = false;
-	       modules = {
-	         basics = { };
-	         ai = {
-	           n_lines = 50;
-	           search_method = "cover_or_next";
-	         };
-	         comment = { };
-	         surround = { };
-	         clue = { };
-	         jump = { };
-	         move = { };
-	  files = { };
-	         pairs = { };
-	         indentscope = { };
-	       };
-	     };
+      mini = {
+        enable = false;
+        modules = {
+          basics = { };
+          ai = {
+            n_lines = 50;
+            search_method = "cover_or_next";
+          };
+          comment = { };
+          surround = { };
+          clue = { };
+          jump = { };
+          move = { };
+          files = { };
+          pairs = { };
+          indentscope = { };
+        };
+      };
     };
     opts = {
       number = true;

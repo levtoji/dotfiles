@@ -46,7 +46,7 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
-      configurationLimit = 5;
+      configurationLimit = 10;
     };
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
@@ -112,7 +112,8 @@
 
   # Patched font for icons in terminal
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    jetbrains-mono
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

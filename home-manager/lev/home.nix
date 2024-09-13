@@ -8,7 +8,7 @@ in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
-    inputs.nix-colors.homeManagerModule
+    # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
     ./nvim.nix
@@ -73,8 +73,8 @@ in {
       bottom
       brave
       broot
-      csharpier
       clang-tools
+      csharpier
       deno
       du-dust
       eza
@@ -104,21 +104,22 @@ in {
       nodePackages.typescript-language-server
       # oterm
       ouch
+      pyright
       ripgrep
       ruff
       ruff-lsp
-      pyright
       rustup
       signal-desktop
       slack
       spotify
       steam
+      taplo
       tealdeer
       telegram-desktop
       thunderbird
-      taplo
       tokei
       uv
+      vesktop
       vlc
       vscode
       wezterm
@@ -129,7 +130,7 @@ in {
       zoxide
 
       (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
-      (pkgs.discord-canary.override { withVencord = true; })
+      # (pkgs.discord-canary.override { withVencord = true; })
     ];
 
     file = {
@@ -219,23 +220,24 @@ in {
       ".config/kitty/theme.conf".source =
         if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
 
-      # ".wezterm.lua".text = ''
-      #   local wezterm = require 'wezterm'
-      #   local config = {}
+      ".wezterm.lua".text = ''
+        local wezterm = require 'wezterm'
+        local config = {}
 
-      #   if wezterm.config_builder then
-      #     config = wezterm.config_builder()
-      #   end
+        if wezterm.config_builder then
+          config = wezterm.config_builder()
+        end
 
-      #   config.color_scheme = "${
-      #     if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
-      #   }"
-      #   config.font_size = ${font-size}
-      #   config.hide_tab_bar_if_only_one_tab = true
-      #   config.warn_about_missing_glyphs = false
+        config.color_scheme = "${
+          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
+        }"
+        config.font_size = ${font-size}
+        config.hide_tab_bar_if_only_one_tab = true
+        config.warn_about_missing_glyphs = false
+        config.front_end = "WebGpu"
 
-      #   return config
-      # '';
+        return config
+      '';
     };
   };
 
@@ -244,17 +246,18 @@ in {
     direnv.enable = true;
     starship.enable = true;
     bash.enable = true;
+    bash.bashrcExtra = "ssh-add ~/.ssh/id_rsa";
     emacs = {
       enable = true;
       package = pkgs.emacs;
     };
 
-    # git = {
-    #   enable = true;
-    #   lfs.enable = true;
-    #   userName = "Lev Perschin";
-    #   userEmail = "lev@perschin.net";
-    # };
+    git = {
+      enable = true;
+      lfs.enable = true;
+      userName = "Lev Perschin";
+      userEmail = "lev@perschin.net";
+    };
   };
 
   # Nicely reload system units when changing configs
