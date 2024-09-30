@@ -2,7 +2,7 @@
 let
   editor = "hx";
   config-path = "~/dotfiles";
-  font-size = "14.0";
+  font-size = "12.0";
   theme-light = false;
 in {
   # You can import other home-manager modules here
@@ -33,6 +33,8 @@ in {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      # AMD Compute
+      rocmSupport = true;
     };
   };
 
@@ -88,10 +90,10 @@ in {
       godot_4
       jabref
       just
+      jetbrains.pycharm-professional
       kdePackages.kcalc
       kdePackages.kdenlive
       kdePackages.kmag
-      # kdePackages.neochat
       libreoffice-fresh
       localsend
       mediainfo
@@ -102,12 +104,11 @@ in {
       nodePackages.prettier
       nodePackages.typescript
       nodePackages.typescript-language-server
-      # oterm
       ouch
-      pyright
+      texlab
+      # pyright
+      # jetbrains-toolbox
       ripgrep
-      ruff
-      ruff-lsp
       rustup
       signal-desktop
       slack
@@ -171,45 +172,6 @@ in {
         C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
         C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
       '';
-
-      # ".config/helix/languages.toml".text = ''
-      #   [language-server]
-      #   biome = { command = "biome", args = ["lsp-proxy"] }
-
-      #   [[language]]
-      #   name = "javascript"
-      #   language-servers = [ "biome" ]
-      #   auto-format = true
-
-      #   [[language]]
-      #   name = "typescript"
-      #   language-servers = [ "biome" ]
-      #   auto-format = true
-
-      #   [[language]]
-      #   name = "tsx"
-      #   auto-format = true
-      #   language-servers = [ "biome" ]
-
-      #   [[language]]
-      #   name = "jsx"
-      #   auto-format = true
-      #   language-servers = [ "biome" ]
-
-      #   [[language]]
-      #   name = "json"
-      #   language-servers = [ "biome" ]        
-
-      #   # [[language]]
-      #   # name = "markdown"
-      #   # formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
-      #   # auto-format = true
-
-      #   # [[language]]
-      #   # name = "nix"
-      #   # formatter = { command = 'nixfmt', args = ["-w", "100"] }
-      #   # auto-format = true
-      # '';
 
       ".config/kitty/kitty.conf".text = ''
         font_size ${font-size}

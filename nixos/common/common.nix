@@ -162,7 +162,7 @@
   # iOS Thethering
   services.usbmuxd.enable = true;
   # Local LLM
-  services.ollama = { enable = true; };
+  # services.ollama = { enable = true; };
   # Bigger runtime directory space because of build errors
   services.logind.extraConfig = "RuntimeDirectorySize=4G";
   # SSD trim

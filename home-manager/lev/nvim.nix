@@ -15,7 +15,7 @@
       lsp = {
         enable = true;
         servers = {
-          tsserver.enable = true;
+          ts-ls.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = true;
@@ -33,7 +33,7 @@
       neogit.enable = true;
       gitsigns.enable = true;
       octo.enable = true;
-
+      web-devicons.enable = true;
       nvim-autopairs.enable = true;
 
       neotest.enable = true;

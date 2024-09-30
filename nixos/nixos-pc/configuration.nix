@@ -44,6 +44,13 @@
     ];
   };
 
+  # Open Webui
+  services.open-webui.enable = true;
+  # Ollama
+  services.ollama.enable = true;
+  # Partition Manager
+  programs.partition-manager.enable = true;
+  # Flag for better wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "23.05";
