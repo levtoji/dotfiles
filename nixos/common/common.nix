@@ -115,7 +115,7 @@
     # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     jetbrains-mono
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
 
@@ -179,6 +179,21 @@
   };
 
   programs.kdeconnect.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      fuse3
+      icu
+      nss
+      openssl
+      curl
+      expat
+      # ...
+    ];
+  };
 
   services.openssh = {
     enable = true;

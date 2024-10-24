@@ -29,21 +29,6 @@
     ];
   };
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-      zlib
-      fuse3
-      icu
-      nss
-      openssl
-      curl
-      expat
-      # ...
-    ];
-  };
-
   # Open Webui
   # services.open-webui.enable = true;
   # Ollama
