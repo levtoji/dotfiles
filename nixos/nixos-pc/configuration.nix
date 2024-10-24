@@ -45,7 +45,7 @@
   };
 
   # Open Webui
-  services.open-webui.enable = true;
+  # services.open-webui.enable = true;
   # Ollama
   services.ollama.enable = true;
   # Partition Manager
