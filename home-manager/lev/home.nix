@@ -45,7 +45,7 @@ in {
 
     sessionVariables = {
       EDITOR = editor;
-      BROWSER = "brave";
+      BROWSER = "firefox";
       TERMINAL = "wezterm";
     };
 
@@ -106,8 +106,6 @@ in {
       nodePackages.typescript-language-server
       ouch
       texlab
-      # pyright
-      # jetbrains-toolbox
       ripgrep
       rustup
       signal-desktop
