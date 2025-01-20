@@ -36,7 +36,10 @@
   # Partition Manager
   programs.partition-manager.enable = true;
   # Flag for better wayland support
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
 
   system.stateVersion = "23.05";
 }

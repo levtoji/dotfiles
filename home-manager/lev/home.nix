@@ -3,7 +3,7 @@ let
   editor = "hx";
   config-path = "~/dotfiles";
   font-size = "12.0";
-  theme-light = false;
+  light-theme = false;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -45,7 +45,7 @@ in {
 
     sessionVariables = {
       EDITOR = editor;
-      BROWSER = "brave";
+      BROWSER = "firefox";
       TERMINAL = "wezterm";
     };
 
@@ -54,9 +54,9 @@ in {
       zl = "zellij";
       zlf = "zellij --layout ~/.config/zellij/layouts/first.kdl";
       htop = "btm -b";
-      home = "${editor} ${config-path}/home-manager/$(whoami)/home.nix";
+      home = "cd ~/dotfiles/ && ${editor} ${config-path}/home-manager/$(whoami)/home.nix";
       hms = "home-manager switch --flake ${config-path}/#$(whoami)";
-      nix-conf = "${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
+      nix-conf = "cd ~/dotfiles/ && ${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
       nix-bs = "sudo nixos-rebuild switch --flake ${config-path}#$(hostname)";
       memory = "${editor} ~/Notes/$(date +%Y%m%d)";
       zx = "yazi";
@@ -73,8 +73,8 @@ in {
       biome
       blender
       bottom
-      brave
       broot
+      bambu-studio
       clang-tools
       csharpier
       deno
@@ -82,15 +82,17 @@ in {
       eza
       f3d
       fd
+      firefox
       freecad
       gh-dash
       gimp
       gitoxide
       gitui
-      godot_4
+      # godot_4
       jabref
-      just
       jetbrains.pycharm-professional
+      # jetbrains-toolbox
+      just
       kdePackages.kcalc
       kdePackages.kdenlive
       kdePackages.kmag
@@ -105,9 +107,7 @@ in {
       nodePackages.typescript
       nodePackages.typescript-language-server
       ouch
-      texlab
-      # pyright
-      # jetbrains-toolbox
+      orca-slicer
       ripgrep
       rustup
       signal-desktop
@@ -117,44 +117,34 @@ in {
       taplo
       tealdeer
       telegram-desktop
+      texlab
       thunderbird
       tokei
       typst
       uv
-      vesktop
       vlc
       vscode
       wezterm
+      whatsapp-for-linux
       wl-clipboard
       yazi
       zellij
       zoom-us
       zoxide
 
-      (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
-      # (pkgs.discord-canary.override { withVencord = true; })
+      (with dotnetCorePackages; combinePackages [ sdk_8_0 sdk_9_0 ])
+      (pkgs.discord-canary.override { withVencord = true; })
     ];
 
     file = {
-      ".config/zellij/layouts/first.kdl".text = ''
-        layout {
-            pane split_direction="vertical" {
-                pane
-                pane
-            }
-            pane size=1 borderless=true {
-                plugin location="zellij:compact-bar"
-            }
-        }
-      '';
+      ".config/zellij/layouts/first.kdl".text = "";
 
       ".config/zellij/config.kdl".source = ./zellij/config.kdl;
 
       ".config/helix/config.toml".text = ''
-        theme = "${if theme-light then "cyan_light" else "dark_plus"}"
+        theme = "${if light-theme then "cyan_light" else "amberwood"}"
 
         [editor]
-        bufferline = "always"
         cursorline = true
 
         [editor.soft-wrap]
@@ -174,15 +164,6 @@ in {
         C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
       '';
 
-      ".config/kitty/kitty.conf".text = ''
-        font_size ${font-size}
-        font_family JetBrains Mono
-        include theme.conf
-      '';
-
-      ".config/kitty/theme.conf".source =
-        if theme-light then ./kitty/theme-light.conf else ./kitty/theme-dark.conf;
-
       ".wezterm.lua".text = ''
         local wezterm = require 'wezterm'
         local config = {}
@@ -192,7 +173,7 @@ in {
         end
 
         config.color_scheme = "${
-          if theme-light then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
+          if light-theme then "Vs Code Light+ (Gogh)" else "Vs Code Dark+ (Gogh)"
         }"
         config.font_size = ${font-size}
         config.hide_tab_bar_if_only_one_tab = true
@@ -209,11 +190,11 @@ in {
     direnv.enable = true;
     starship.enable = true;
     bash.enable = true;
-    bash.bashrcExtra = "ssh-add ~/.ssh/id_rsa";
-    emacs = {
-      enable = true;
-      package = pkgs.emacs;
-    };
+    bash.bashrcExtra = ''
+      eval `ssh-agent`
+      ssh-add ~/.ssh/id_rsa
+    '';
+    brave.enable = true;
 
     git = {
       enable = true;
