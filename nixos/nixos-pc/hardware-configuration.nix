@@ -6,7 +6,7 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  # boot.kernelParams = [ "module_blacklist=i915" ];
+  boot.kernelParams = [ "amdgpu.runpm=0" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/86d76427-a9e6-40d1-88f7-64846839b4f2";
