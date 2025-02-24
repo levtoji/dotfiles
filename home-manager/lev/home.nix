@@ -74,7 +74,7 @@ in {
       blender
       bottom
       broot
-      bambu-studio
+      # bambu-studio
       clang-tools
       csharpier
       deno
