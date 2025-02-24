@@ -88,10 +88,7 @@ in {
       gimp
       gitoxide
       gitui
-      # godot_4
-      jabref
       jetbrains.pycharm-professional
-      # jetbrains-toolbox
       just
       kdePackages.kcalc
       kdePackages.kdenlive
@@ -107,6 +104,7 @@ in {
       nodePackages.typescript
       nodePackages.typescript-language-server
       ouch
+      texlab
       orca-slicer
       ripgrep
       rustup
@@ -194,7 +192,6 @@ in {
       eval `ssh-agent`
       ssh-add ~/.ssh/id_rsa
     '';
-    brave.enable = true;
 
     git = {
       enable = true;
