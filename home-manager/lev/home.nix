@@ -11,7 +11,7 @@ in {
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    ./nvim.nix
+    # ./nvim.nix
   ];
 
   nixpkgs = {
@@ -70,8 +70,9 @@ in {
       audacity
       bandwhich
       bat
-      biome
-      blender
+      # brave
+      # biome
+      # blender-hip
       bottom
       broot
       # bambu-studio
@@ -80,15 +81,16 @@ in {
       deno
       du-dust
       eza
-      f3d
+      # f3d
       fd
       firefox
-      freecad
+      # freecad
       gh-dash
       gimp
       gitoxide
       gitui
-      jetbrains.pycharm-professional
+      # gpt4all
+      # jetbrains.pycharm-professional
       just
       kdePackages.kcalc
       kdePackages.kdenlive
@@ -96,7 +98,7 @@ in {
       libreoffice-fresh
       localsend
       mediainfo
-      mono
+      # mono
       mpv
       nixd
       nixfmt-classic
@@ -105,7 +107,7 @@ in {
       nodePackages.typescript-language-server
       ouch
       texlab
-      orca-slicer
+      # orca-slicer # Uses deprecated library, do not install
       ripgrep
       rustup
       signal-desktop
@@ -130,7 +132,7 @@ in {
       zoom-us
       zoxide
 
-      (with dotnetCorePackages; combinePackages [ sdk_8_0 sdk_9_0 ])
+      # (with dotnetCorePackages; combinePackages [ sdk_8_0 sdk_9_0 ])
       (pkgs.discord-canary.override { withVencord = true; })
     ];
 

@@ -21,18 +21,16 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      mesa.drivers
-      libvdpau-va-gl
-    ];
+    extraPackages = with pkgs; [ intel-media-driver intel-vaapi-driver mesa libvdpau-va-gl ];
   };
 
-  # Open Webui
-  # services.open-webui.enable = true;
   # Ollama
-  services.ollama.enable = true;
+  services.ollama = {
+    enable = true;
+    host = "0.0.0.0";
+    environmentVariables = { OLLAMA_HOST = "0.0.0.0"; };
+    acceleration = "rocm";
+  };
   # Partition Manager
   programs.partition-manager.enable = true;
   # Flag for better wayland support
