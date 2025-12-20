@@ -78,6 +78,8 @@
 
   programs.kdeconnect.enable = true;
 
-  # Disable firewall for desktop (can be overridden per machine)
+  # Note: Firewall is disabled here for desktop convenience.
+  # Desktop machines typically operate on trusted home networks.
+  # Override this in per-machine config if you need firewall enabled.
   networking.firewall.enable = false;
 }

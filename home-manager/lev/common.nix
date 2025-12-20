@@ -23,11 +23,11 @@ in {
     };
 
     shellAliases = {
-      ls = "exa";
+      ls = "eza";
       zl = "zellij";
       zlf = "zellij --layout ~/.config/zellij/layouts/first.kdl";
       htop = "btm -b";
-      home = "cd ~/dotfiles/ && ${editor} ${config-path}/home-manager/$(whoami)/home.nix";
+      home = "cd ~/dotfiles/ && ${editor} ${config-path}/home-manager/$(whoami)/home-$(hostname).nix";
       hms = "home-manager switch --flake ${config-path}/#$(whoami)@$(hostname)";
       nix-conf = "cd ~/dotfiles/ && ${editor} ${config-path}/nixos/$(hostname)/configuration.nix";
       nix-bs = "sudo nixos-rebuild switch --flake ${config-path}#$(hostname)";
