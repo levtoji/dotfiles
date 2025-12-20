@@ -70,6 +70,8 @@
     tmux
   ];
 
-  # NixOS state version - update this to match your NixOS installation
+  # NixOS state version - this should match the NixOS release you first installed on this machine.
+  # It's important to keep this set to the version you originally installed, not the current version.
+  # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "23.05";
 }

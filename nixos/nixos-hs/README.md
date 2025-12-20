@@ -26,9 +26,17 @@ To add additional home servers (e.g., `nixos-hs2`, `nixos-hs3`, etc.), follow th
    networking.hostName = "nixos-hs2";
    ```
 
-4. **Generate hardware configuration** on the target machine:
+4. **Generate and merge hardware configuration** on the target machine:
    ```bash
-   nixos-generate-config --show-hardware-config > nixos/nixos-hs2/hardware-configuration.nix
+   # Generate the hardware configuration
+   nixos-generate-config --show-hardware-config > /tmp/hw-config.nix
+   
+   # Review and merge the relevant parts into your hardware-configuration.nix
+   # Pay special attention to:
+   # - boot.initrd.availableKernelModules
+   # - boot.kernelModules (kvm-intel vs kvm-amd)
+   # - fileSystems and their UUIDs
+   # - swapDevices
    ```
 
 5. **Update `flake.nix`** to include the new server:
