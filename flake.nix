@@ -29,6 +29,7 @@
 
       nixos-pc = "nixos-pc";
       nixos-nb = "nixos-nb";
+      nixos-hs = "nixos-hs";
       default-user = "lev";
     in {
       # Your custom packages
@@ -57,6 +58,10 @@
         ${nixos-nb} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/${nixos-nb}/configuration.nix ];
+        };
+        ${nixos-hs} = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/${nixos-hs}/configuration.nix ];
         };
       };
 
