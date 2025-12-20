@@ -1,39 +1,29 @@
 { pkgs, ... }:
 
 {
-  # Import common configuration and hardware configuration
   imports = [
-    ../common/common.nix
+    ../common/base.nix
     ./hardware-configuration.nix
   ];
 
-  # Set hostname for the home server
   networking.hostName = "nixos-hs";
 
   # --- Server-specific settings ---
 
-  # Disable graphical services for a headless server setup
-  # Comment out or remove these lines if you need a GUI on your home server
-  services.xserver.enable = false;
-  services.displayManager.sddm.enable = false;
-  services.desktopManager.plasma6.enable = false;
-
-  # Enable hardware graphics but without desktop environment
-  # This can be useful for transcoding or other GPU tasks
+  # Hardware graphics without desktop environment
   hardware.graphics = {
     enable = true;
   };
 
-  # --- Useful server services ---
+  # Enable firewall for server security
+  networking.firewall = {
+    enable = true;
+    # Example: Open ports for common services
+    # allowedTCPPorts = [ 80 443 22 ];
+    # allowedUDPPorts = [ ];
+  };
 
-  # SSH is enabled in common.nix, but you can override settings here if needed
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     PermitRootLogin = "no";
-  #     PasswordAuthentication = false;
-  #   };
-  # };
+  # --- Optional server services ---
 
   # Example: Enable Tailscale for secure remote access
   # services.tailscale.enable = true;
@@ -60,18 +50,11 @@
   #   openFirewall = true;
   # };
 
-  # Example: Enable Docker (already enabled in common.nix)
-  # virtualisation.docker.enable = true;
-
   # --- Additional server packages ---
   environment.systemPackages = with pkgs; [
-    # Add server-specific packages here
     htop
     tmux
   ];
 
-  # NixOS state version - this should match the NixOS release you first installed on this machine.
-  # It's important to keep this set to the version you originally installed, not the current version.
-  # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "23.05";
 }
