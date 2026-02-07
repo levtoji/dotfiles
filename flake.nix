@@ -29,6 +29,7 @@
 
       nixos-pc = "nixos-pc";
       nixos-nb = "nixos-nb";
+      nixos-hs = "nixos-hs";
       default-user = "lev";
     in {
       # Your custom packages
@@ -58,15 +59,36 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/${nixos-nb}/configuration.nix ];
         };
+        ${nixos-hs} = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/${nixos-hs}/configuration.nix ];
+        };
       };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
+        # Legacy configuration for backward compatibility
         "${default-user}" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home-manager/${default-user}/home.nix ];
+        };
+        # Per-machine home configurations
+        "${default-user}@${nixos-pc}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home-manager/${default-user}/home-${nixos-pc}.nix ];
+        };
+        "${default-user}@${nixos-nb}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home-manager/${default-user}/home-${nixos-nb}.nix ];
+        };
+        "${default-user}@${nixos-hs}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home-manager/${default-user}/home-${nixos-hs}.nix ];
         };
       };
     };
